@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Student Details</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* TOP NAVBAR */
+        .navbar {
+            background-color: #222;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .navbar-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            margin-left: 6px;
+            border-radius: 4px;
+        }
+
+        .navbar-links a:hover {
+            background-color: #ff9800;
+        }
+
+        /* PAGE CONTENT WRAPPER */
+        .page-wrapper {
+            min-height: calc(100vh - 120px);
+        }
+
+        /* BOTTOM NAVBAR */
+        .bottom-nav {
+            background-color: #222;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            margin: 0 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .bottom-nav a:hover {
+            background-color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION BAR -->
+<div class="navbar">
+    <span class="navbar-title">Edit Student Details</span>
+
+    <div class="navbar-links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+
+    </div>
+</div>
+
+<div class="page-wrapper">
+
+    <!-- CENTERED TABLE CARD -->
+    <div class="table-container center-table">
+
+        <h2>Student Details</h2>
+
+        <form th:action="@{/update/{id}(id=${student.id})}"
+              th:object="${student}" method="post">
+
+            <table class="edit-table">
+                <tr>
+                    <th>Field</th>
+                    <th>Value</th>
+                </tr>
+
+                <tr>
+                    <td>Name</td>
+                    <td><input type="text" th:field="*{name}" required></td>
+                </tr>
+
+                <tr>
+                    <td>Email</td>
+                    <td><input type="email" th:field="*{email}" required></td>
+                </tr>
+
+                <tr>
+                    <td>Phone</td>
+                    <td><input type="text" th:field="*{phone}" required></td>
+                </tr>
+
+                <tr>
+                    <td>Course</td>
+                    <td><input type="text" th:field="*{course}" required></td>
+                </tr>
+            </table>
+
+            <div class="submit-container">
+                <button type="submit" class="btn-primary">
+                    Update Student
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- BOTTOM NAVIGATION BAR -->
+<div class="bottom-nav">
+</div>
+
+</body>
+</html>

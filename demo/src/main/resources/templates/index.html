@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Management</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* TOP NAVBAR */
+        .navbar {
+            background-color: #222;
+            padding: 14px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-title {
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .navbar-links a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            margin-left: 6px;
+            border-radius: 4px;
+        }
+
+        .navbar-links a:hover {
+            background-color: #ff9800;
+        }
+
+        /* PAGE CONTENT */
+        .page-wrapper {
+            padding: 30px;
+            min-height: calc(100vh - 120px);
+        }
+
+        h2 {
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 16px;
+            background-color: #2196F3;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+
+        .btn:hover {
+            background-color: #1976D2;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f2f2f2;
+        }
+
+        /* BOTTOM NAVBAR */
+        .bottom-nav {
+            background-color: #222;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .bottom-nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 18px;
+            margin: 0 6px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+
+        .bottom-nav a:hover {
+            background-color: #ff9800;
+        }
+    </style>
+</head>
+<body>
+
+<!-- TOP NAVIGATION -->
+<div class="navbar">
+    <span class="navbar-title">Student Management</span>
+
+    <div class="navbar-links">
+        <a href="/">Home</a>
+        <a href="/services">Services</a>
+    </div>
+</div>
+
+<!-- PAGE CONTENT -->
+<div class="page-wrapper">
+    <h2>Student List</h2>
+
+    <a href="/new" class="btn">Add New Student</a>
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Course</th>
+            <th>Actions</th>
+        </tr>
+
+        <tr th:each="student : ${listStudents}">
+            <td th:text="${student.id}"></td>
+            <td th:text="${student.name}"></td>
+            <td th:text="${student.email}"></td>
+            <td th:text="${student.phone}"></td>
+            <td th:text="${student.course}"></td>
+            <td>
+                <a th:href="@{/edit/{id}(id=${student.id})}">Edit</a> |
+                <a th:href="@{/delete/{id}(id=${student.id})}"
+                   onclick="return confirm('Are you sure?')">Delete</a>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<!-- BOTTOM NAVIGATION -->
+<div class="bottom-nav">
+    <a href="/">Home</a>
+    <a href="/new">Add Student</a>
+    <a href="/services">Services</a>
+</div>
+
+</body>
+</html>
